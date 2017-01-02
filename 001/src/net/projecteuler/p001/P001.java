@@ -10,24 +10,57 @@ package net.projecteuler.p001;
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 class P001 {
+    private int calculations;
 
-    int findMultiples(int maxValue) {
+    Results bruteMultiples(int targetValue) {
+        Results r = new Results();
+        calculations = 0;
         int sum = 0;
 
-        for(int i = 0; i < maxValue; i++) {
+        for(int i = 0; i < targetValue; i++) {
             if (isMultipleOfThree(i) || isMultipleOfFive(i)) {
                 sum += i;
             }
         }
 
-        return sum;
+        r.setSum(sum);
+        r.setCalculations(calculations);
+        return r;
     }
 
     private boolean isMultipleOfFive(int i) {
+        calculations++;
         return i % 5 == 0;
     }
 
     private boolean isMultipleOfThree(int i) {
+        calculations++;
         return i % 3 == 0;
+    }
+
+    Results solution2(int targetValue) {
+        Results r = new Results();
+        calculations = 0;
+        int sum = 0;
+
+        for(int i = 0; i < targetValue; i += 3) {
+            calculations++;
+            sum += i;
+        }
+
+        for (int i = 0; i < targetValue; i += 5) {
+            calculations++;
+            sum += i;
+        }
+
+        for (int i = 0; i < targetValue; i += 15) {
+            calculations++;
+            sum -= i;
+        }
+
+        r.setSum(sum);
+        r.setCalculations(calculations);
+        return r;
+
     }
 }

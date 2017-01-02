@@ -1,6 +1,9 @@
 package net.projecteuler.p001;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import static java.lang.System.exit;
+import static java.lang.System.setOut;
 
 /**
  * Created by Mike on 1/2/17.
@@ -15,15 +18,40 @@ import static java.lang.System.exit;
 public class P001_test {
     public static void main(String[] args) {
         P001 p001 = new P001();
+        Results r;
+        long startTime, endTime, elapsedTime;
 
-        int sum = p001.findMultiples(10);
-        if(sum != 23) {
+//        brute results
+        r = p001.bruteMultiples(10);
+        if(r.getSum() != 23) {
             System.out.println("Initial sum should equal 23 but does not.");
             exit(1);
         }
-        System.out.println("Initial sum is " + sum);
+        System.out.println("Initial sum is " + r.getSum());
 
-        sum = p001.findMultiples(1000);
-        System.out.println("Challenge sum is " + sum);
+        startTime = System.nanoTime();
+        r = p001.bruteMultiples(1000);
+        endTime = System.nanoTime();
+        elapsedTime = endTime - startTime;
+        System.out.println("Challenge sum is " + r.getSum());
+        System.out.println("Challenge number of calculations is " + r.getCalculations());
+        System.out.println("Challenge took " + elapsedTime + "(ns)");
+
+//        PE better solution
+        r = p001.solution2(10);
+        if(r.getSum() != 23) {
+            System.out.println("Initial sum should equal 23 but does not.");
+            exit(1);
+        }
+        System.out.println("Initial sum is " + r.getSum());
+
+        startTime = System.nanoTime();
+        r = p001.solution2(1000);
+        endTime = System.nanoTime();
+        elapsedTime = endTime - startTime;
+
+        System.out.println("Challenge sum is " + r.getSum());
+        System.out.println("Challenge number of calculations is " + r.getCalculations());
+        System.out.println("Challenge took " + elapsedTime + "(ns)");
     }
 }
