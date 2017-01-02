@@ -1,4 +1,7 @@
 package net.projecteuler.p001;
+
+import static java.lang.System.exit;
+
 /**
  * Created by Mike on 1/2/17.
  *
@@ -14,6 +17,10 @@ public class P001_test {
         P001 p001 = new P001();
 
         int sum = p001.findMultiples(10);
+        if(sum != 23) {
+            System.out.println("Initial sum should equal 23 but does not.");
+            exit(1);
+        }
         System.out.println("Initial sum is " + sum);
 
         sum = p001.findMultiples(1000);

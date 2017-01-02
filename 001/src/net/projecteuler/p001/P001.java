@@ -15,13 +15,19 @@ class P001 {
         int sum = 0;
 
         for(int i = 0; i < maxValue; i++) {
-            if (i % 3 == 0) {
-                sum += i;
-            } else if (i % 5 == 0) {
+            if (isMultipleOfThree(i) || isMultipleOfFive(i)) {
                 sum += i;
             }
         }
 
         return sum;
+    }
+
+    private boolean isMultipleOfFive(int i) {
+        return i % 5 == 0;
+    }
+
+    private boolean isMultipleOfThree(int i) {
+        return i % 3 == 0;
     }
 }
