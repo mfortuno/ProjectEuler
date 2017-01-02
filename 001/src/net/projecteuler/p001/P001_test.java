@@ -1,9 +1,6 @@
 package net.projecteuler.p001;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 
 /**
  * Created by Mike on 1/2/17.
@@ -21,28 +18,21 @@ public class P001_test {
         Results r;
         long startTime, endTime, elapsedTime;
 
-//        brute results
+        // brute results
         r = p001.bruteMultiples(10);
-        if(r.getSum() != 23) {
-            System.out.println("Initial sum should equal 23 but does not.");
-            exit(1);
-        }
+        verifyInitialResult(r);
         System.out.println("Initial sum is " + r.getSum());
 
         startTime = System.nanoTime();
         r = p001.bruteMultiples(1000);
         endTime = System.nanoTime();
         elapsedTime = endTime - startTime;
-        System.out.println("Challenge sum is " + r.getSum());
-        System.out.println("Challenge number of calculations is " + r.getCalculations());
-        System.out.println("Challenge took " + elapsedTime + "(ns)");
 
-//        PE better solution
+        printResults(r, elapsedTime);
+
+        // Project Euler's better solution
         r = p001.solution2(10);
-        if(r.getSum() != 23) {
-            System.out.println("Initial sum should equal 23 but does not.");
-            exit(1);
-        }
+        verifyInitialResult(r);
         System.out.println("Initial sum is " + r.getSum());
 
         startTime = System.nanoTime();
@@ -50,8 +40,19 @@ public class P001_test {
         endTime = System.nanoTime();
         elapsedTime = endTime - startTime;
 
+        printResults(r, elapsedTime);
+    }
+
+    private static void verifyInitialResult(Results r) {
+        if(r.getSum() != 23) {
+            System.out.println("Initial sum should equal 23 but does not.");
+            exit(1);
+        }
+    }
+
+    private static void printResults(Results r, long elapsedTime) {
         System.out.println("Challenge sum is " + r.getSum());
-        System.out.println("Challenge number of calculations is " + r.getCalculations());
-        System.out.println("Challenge took " + elapsedTime + "(ns)");
+        System.out.println("Challenge number of calculations is " + r.getOperations());
+        System.out.println("Challenge took " + elapsedTime + "ns");
     }
 }

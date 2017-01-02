@@ -6,7 +6,7 @@ package net.projecteuler.p001;
  */
 class Results {
     private int sum;
-    private int calculations;
+    private int operations;
 
     int getSum() {
         return sum;
@@ -16,11 +16,11 @@ class Results {
         this.sum = sum;
     }
 
-    int getCalculations() {
-        return calculations;
+    int getOperations() {
+        return operations;
     }
 
-    void setCalculations(int calculations) {
-        this.calculations = calculations;
+    void setOperations(int operations) {
+        this.operations = operations;
     }
 }
